@@ -9,6 +9,8 @@ gem 'jquery-rails'
 gem 'webpacker'
 gem 'sqlite3'
 gem 'foundation-rails'
+gem 'jquery-rails'
+
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
