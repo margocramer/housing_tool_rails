@@ -1,7 +1,6 @@
-class EventsController < ActionController::Base
+class EventsController < ApplicationController
+  protect_from_forgery with: :exception
   def index
 
   end
-
-  protect_from_forgery with: :exception
 end

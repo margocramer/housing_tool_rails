@@ -12,10 +12,11 @@ import ReactDOM from 'react-dom';
 import App from '../react/App';
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <App />,
-    document.body.appendChild(document.createElement('div')),
-  )
+  let eventRootDiv = document.getElementById('event-root-div')
+
+  if (eventRootDiv) {
+    ReactDOM.render(<App />, eventRootDiv)
+  }
 });
 
 console.log('Hello World from Webpacker')
