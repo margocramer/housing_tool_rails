@@ -8,10 +8,12 @@ class FormContainer extends Component {
     super(props)
     this.state = {
       income: null,
-      size: null
+      size: null,
+      info: {},
     };
     this.updateIncome = this.updateIncome.bind(this);
-    this.updateSize = this.updateSize.bind(this)
+    this.updateSize = this.updateSize.bind(this);
+    this.updateInfo = this.updateInfo.bind(this)
   }
 
   updateIncome(event){
@@ -22,12 +24,31 @@ class FormContainer extends Component {
     this.setState({size: event.target.value})
   }
 
+  updateInfo(event){
+    fetch('/api/v1/household_income')
+      .then(response => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = "whoops",
+          error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then(response => {
+        return response.json()})
+      .then(body=>{
+        this.setState({ info: body})
+      })
+  }
+
+
   render(){
     let form1 = null;
     let form2 = null;
     let result = null;
 
-    if( this.state.size > 0 && this.state.income ) {
+    if( this.state.size > 0 && this.state.income && this.state.info ) {
       form1 = <HouseholdSizeForm
         updateSize={this.updateSize}
         size={this.state.size}
@@ -40,6 +61,8 @@ class FormContainer extends Component {
       result = <ResultContainer
         income={this.state.income}
         size={this.state.size}
+        updateInfo={this.updateInfo}
+        info={this.state.info}
       />
     } else if ( this.state.size === "Household Size" || !this.state.size ){
       form1 = <HouseholdSizeForm

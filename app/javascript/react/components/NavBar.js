@@ -4,7 +4,6 @@ const NavBar = (props) => {
 
   return(
     <div>
-      <h2>NavBarComponent</h2>
       <nav className="top-bar" data-topbar role="navigation">
         <ul className="title-area">
           <li className="name">
