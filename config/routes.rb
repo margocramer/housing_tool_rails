@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   root 'events#index'
   resources :events, only: [:index]
+  resources :unit_rents, only: [:show]
 end
