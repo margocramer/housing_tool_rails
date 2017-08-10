@@ -10,10 +10,11 @@ class FormContainer extends Component {
       income: null,
       size: null,
       info: {},
+      incomeInfo: [],
+      rentInfo: []
     };
     this.updateIncome = this.updateIncome.bind(this);
     this.updateSize = this.updateSize.bind(this);
-    this.updateInfo = this.updateInfo.bind(this)
   }
 
   updateIncome(event){
@@ -24,31 +25,32 @@ class FormContainer extends Component {
     this.setState({size: event.target.value})
   }
 
-  updateInfo(event){
+  componentDidMount(){
     fetch('/api/v1/household_income')
-      .then(response => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = "whoops",
-          error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then(response => {
-        return response.json()})
-      .then(body=>{
-        this.setState({ info: body})
-      })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = "whoops",
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => {
+      return response.json()})
+    .then(body => {
+      this.setState({rentInfo: body.unit_rent, incomeInfo: body.household_income})
+    })
   }
 
-
   render(){
+    console.log(this.state.rentInfo)
+    console.log(this.state.incomeInfo)
     let form1 = null;
     let form2 = null;
     let result = null;
 
-    if( this.state.size > 0 && this.state.income && this.state.info ) {
+    if( this.state.size > 0 && this.state.income ) {
       form1 = <HouseholdSizeForm
         updateSize={this.updateSize}
         size={this.state.size}
@@ -61,8 +63,8 @@ class FormContainer extends Component {
       result = <ResultContainer
         income={this.state.income}
         size={this.state.size}
-        updateInfo={this.updateInfo}
-        info={this.state.info}
+        incomeInfo={this.state.incomeInfo}
+        rentInfo={this.state.rentInfo}
       />
     } else if ( this.state.size === "Household Size" || !this.state.size ){
       form1 = <HouseholdSizeForm
@@ -91,3 +93,22 @@ class FormContainer extends Component {
 }
 
 export default FormContainer;
+
+//
+// updateInfo(event){
+//   fetch(`/api/v1/household_income`)
+//     .then(response => {
+//       if (response.ok) {
+//         return response;
+//       } else {
+//         let errorMessage = "whoops",
+//         error = new Error(errorMessage);
+//         throw(error);
+//       }
+//     })
+//     .then(response => {
+//       return response.json()})
+//     .then(body=>{
+//       this.setState({ info: body })
+//     })
+// }

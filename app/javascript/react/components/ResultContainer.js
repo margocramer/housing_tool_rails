@@ -5,26 +5,14 @@ class ResultContainer extends Component {
   constructor(props){
     super(props)
     this.state = {
-      incomeInfo: null,
-      rentInfo: null
-    }
-  }
-
-  componentDidMount(){
-    this.props.updateInfo()
-  }
-
-  componentWillUpdate(){
-    if ( this.props.info ) {
-      this.setState({ incomeInfo: "make that $$$", rentInfo: "ONE MILLION DOLLARS" })
     }
   }
 
   render(){
     return(
       <div className="result">
-        <p>{this.state.incomeInfo}</p>
-        <p>{this.state.rentInfo}</p>
+        <p>Income Category:{this.props.incomeInfo[0].category_name} </p>
+        <p>Monthly Rent:{this.props.rentInfo[0].monthly_rent}</p>
       </div>
     )
   }
