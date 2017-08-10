@@ -90,6 +90,7 @@ class FormContainer extends Component {
       result = <ResultContainer
         income={this.state.income}
         size={this.state.size}
+        bedrooms={this.state.bedrooms}
         rentInfo={this.state.rentInfo}
         incomeInfo={this.state.incomeInfo}
       />

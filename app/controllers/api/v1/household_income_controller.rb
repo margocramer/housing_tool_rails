@@ -5,6 +5,11 @@ class Api::V1::HouseholdIncomeController < ApiController
 
     render json: @household_income.merge(@unit_rent), adapter: :json
   end
+
+  def create
+    
+  end
+
 end
 
 # @household_income = { household_income: HouseholdIncome.where("income_max = ?", params[:income]) }

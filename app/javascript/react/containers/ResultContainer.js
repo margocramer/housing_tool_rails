@@ -11,16 +11,21 @@ class ResultContainer extends Component {
   }
 
   render(){
-    let filteredIncome = this.props.incomeInfo.filter(createFilter(this.props.size, 'household_size'))
+    let filteredFirst = this.props.incomeInfo.filter(createFilter(this.props.income, 'income_max'));
+    let filteredSecond = filteredFirst.filter(createFilter(this.props.size, 'household_size'));
+    let income = filteredSecond[0]
     return(
       <div>
-        {filteredIncome.map(income=> {
-          if ( true ) {
-            return(
-              <p>{income.ami_category}</p>
-            )
-          }
-        })}
+        <div>
+            <p>{income.ami_category}</p>
+        </div>
+
+        <ResultComponent
+          income={this.props.income}
+          bedrooms={this.props.bedrooms}
+          size={this.props.size}
+          id={income.id}
+        />
       </div>
     )
   }
