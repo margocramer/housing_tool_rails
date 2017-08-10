@@ -44,8 +44,6 @@ class FormContainer extends Component {
   }
 
   render(){
-    console.log(this.state.rentInfo)
-    console.log(this.state.incomeInfo)
     let form1 = null;
     let form2 = null;
     let result = null;
