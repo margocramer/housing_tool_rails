@@ -32,9 +32,3 @@ class ResultContainer extends Component {
 }
 
 export default ResultContainer;
-
-// <ResultComponent
-//   size={this.props.size}
-//   income={this.props.incom}
-//   householdIncomeId={result.househould_income_id}
-// />

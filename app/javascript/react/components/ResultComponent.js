@@ -5,7 +5,7 @@ class ResultComponent extends Component {
   constructor(props){
     super(props)
     this.state = {
-      rentInfo:{}
+      rentInfo: null,
     }
   }
 
@@ -13,6 +13,7 @@ class ResultComponent extends Component {
     let data={
       income: {
         id: this.props.id,
+        bedrooms: this.props.bedrooms,
         rentInfo: {}
       }
     }
@@ -25,14 +26,41 @@ class ResultComponent extends Component {
       if (response.ok) {
         return response;
       } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
+        let errorMessage = '${response.status} (${response.statusText})',
         error = new Error(errorMessage);
         throw(error);
       }
     })
-    .then(response => {
-        response.json()
+    .then(response => response.json())
+    .then(body => {
+      this.setState({rentInfo: body.unit_rent})
     })
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  componentDidUpdate(){
+    let data={
+      income: {
+        id: this.props.id,
+        bedrooms: this.props.bedrooms,
+        rentInfo: {}
+      }
+    }
+    let jsonStringData = JSON.stringify(data);
+    fetch('api/v1/unit_rent', {
+      method: "post",
+      body: jsonStringData
+    })
+    .then(response => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = '${response.status} (${response.statusText})',
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then(response => response.json())
     .then(body => {
       this.setState({rentInfo: body.unit_rent})
     })
@@ -40,21 +68,20 @@ class ResultComponent extends Component {
   }
 
   render(){
-    return(
-      <div>
-        <p>hello, world</p>
-      </div>
-    )
+    if(!this.state.rentInfo){
+      return (
+        <div>
+        </div>
+      )
+    } else {
+      return(
+        <div>
+          <p>{this.state.rentInfo[0].monthly_rent}</p>
+        </div>
+      )
+    }
   }
 }
 
 
 export default ResultComponent;
-
-//api post request - in the create method - return json that is filtered by household_income_id which can be passed in as params
-
-
-// let filteredRent = this.props.rentInfo.filter(createFilter(this.props.id, 'household_income_id'));
-// let filteredRentAgain = filteredRent.filter(createFilter(this.props.bedrooms, 'bedrooms'));
-// let rent = filteredRentAgain[0]
-// <p>{rent.monthly_rent}</p>
