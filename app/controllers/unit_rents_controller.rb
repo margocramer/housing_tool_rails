@@ -1,5 +1,7 @@
 class UnitRentsController < ApplicationController
-  def show
+
+  def index
 
   end
+
 end

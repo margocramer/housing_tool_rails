@@ -15,9 +15,7 @@ class App extends Component {
     return(
       <div>
         <NavBarContainer />
-        <div className="grid-x grid-padding-x" >
-          <FormContainer />
-        </div>
+        <FormContainer />
       </div>
     )
   }
