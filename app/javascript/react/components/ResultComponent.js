@@ -12,7 +12,8 @@ class ResultComponent extends Component {
   componentDidMount(){
     let data={
       income: {
-        id: this.props.id
+        id: this.props.id,
+        rentInfo: {}
       }
     }
     let jsonStringData = JSON.stringify(data);
@@ -30,16 +31,15 @@ class ResultComponent extends Component {
       }
     })
     .then(response => {
-      response.json()
+        response.json()
     })
     .then(body => {
       this.setState({rentInfo: body.unit_rent})
     })
-    .catch(error => console.error('Error in fetch: ${error.message}'));
+    .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render(){
-    console.log(this.state.rentInfo)
     return(
       <div>
         <p>hello, world</p>

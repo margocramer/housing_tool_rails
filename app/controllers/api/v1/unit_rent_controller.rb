@@ -4,7 +4,7 @@ class Api::V1::UnitRentController < ApiController
   def create
     string = request.body.read
     id_hash = JSON.parse(string)
-    id = id["income"]["id"]
+    id= id_hash["income"]["id"]
     @unit_rent = { unit_rent: UnitRent.where(household_income_id: id) }
     render json: @unit_rent, adapter: :json
   end
