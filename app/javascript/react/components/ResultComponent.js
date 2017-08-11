@@ -76,7 +76,7 @@ class ResultComponent extends Component {
     } else {
       return(
         <div>
-          <p>{this.state.rentInfo[0].monthly_rent}</p>
+          <p>Monthly Rent: ${this.state.rentInfo[0].monthly_rent}</p>
         </div>
       )
     }
