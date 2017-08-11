@@ -14,7 +14,7 @@ class IncomeForm extends Component {
         <IncomeField
           handleChange={this.props.updateIncome}
           income={this.props.income}
-          label="Income"
+          label="Annual Income"
           name="income"
         />
       </div>

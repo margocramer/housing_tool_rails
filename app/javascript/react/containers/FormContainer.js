@@ -94,11 +94,15 @@ class FormContainer extends Component {
       />
     }
     return(
-      <div>
-          {form1}
-          {form2}
-          {form3}
+      <div className="row">
+        <div className="form-container" className="large-12 medium-12 small-12 columns">
+            {form1}
+            {form2}
+            {form3}
+        </div>
+        <div className="result-container" className="large-12 medium-12 small-12 columns">
           {result}
+        </div>
       </div>
     )
   }

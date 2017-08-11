@@ -15,18 +15,18 @@ class ResultContainer extends Component {
     let filteredSecond = filteredFirst.filter(createFilter(this.props.size, 'household_size'));
     let income = filteredSecond[0]
     return(
-      <div>
         <div>
-            <p>{income.ami_category}</p>
-        </div>
+          <div>
+              <p>{income.ami_category}</p>
+          </div>
 
-        <ResultComponent
-          income={this.props.income}
-          bedrooms={this.props.bedrooms}
-          size={this.props.size}
-          id={income.id}
-        />
-      </div>
+          <ResultComponent
+            income={this.props.income}
+            bedrooms={this.props.bedrooms}
+            size={this.props.size}
+            id={income.id}
+          />
+        </div>
     )
   }
 }

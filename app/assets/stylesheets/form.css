@@ -1,11 +1,16 @@
+
+.form-container{
+}
+
 .household-size-field{
-  display: inline-block
+
 }
 
 .income-field{
-  display: inline-block
 }
 
-body{
-  background-color: green
+.bedrooms-field{
+}
+
+.result-container{
 }
