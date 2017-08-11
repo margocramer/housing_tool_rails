@@ -17,7 +17,8 @@ class ResultContainer extends Component {
     return(
         <div>
           <div>
-              <p>{income.ami_category}</p>
+              <p>Income Category:  {income.ami_category}</p>
+              <p>% of Area Median Income:  {income.category_name}</p>
           </div>
 
           <ResultComponent
