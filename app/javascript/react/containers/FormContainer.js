@@ -54,7 +54,7 @@ class FormContainer extends Component {
     let form2 = null;
     let form3 = null;
     let result = null;
-    if ( !this.state.bedrooms || !this.state.income || !this.state.size || this.state.bedrooms === "Bedrooms" || this.state.size === "Household Size" ) {
+    if ( !this.state.bedrooms || !this.state.income || !this.state.size || this.state.bedrooms === "Bedrooms" || this.state.size === "Household Size" || this.state.income === "Income") {
       form1 = <HouseholdSizeForm
         updateSize={this.updateSize}
         size={this.state.size}
